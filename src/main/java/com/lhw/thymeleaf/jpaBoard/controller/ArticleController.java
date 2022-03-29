@@ -40,4 +40,16 @@ public class ArticleController {
         return article;
     }
 
+    @RequestMapping("/doDelete")
+    @ResponseBody
+    public String doDelete(long id) {
+        articleRepository.deleteById(id);
+//        Article article = articleRepository.findById(id).get();
+
+//        articleRepository.delete(article);
+
+
+        return "삭제완료";
+    }
+
 }
