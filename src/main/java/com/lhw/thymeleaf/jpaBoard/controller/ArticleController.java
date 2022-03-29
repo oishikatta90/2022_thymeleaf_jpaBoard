@@ -22,10 +22,22 @@ public class ArticleController {
 
     }
 
-    @RequestMapping("1")
+    @RequestMapping("/doModify")
     @ResponseBody
-    public String hello() {
-        return "Hello!1321321dsadsaadad31";
+    public Article doModify(long id, String title, String body) {
+        Article article = articleRepository.findById(id).get();
+
+        if (title != null) {
+            article.setTitle(title);
+        }
+
+        if (body != null) {
+            article.setBody(body);
+        }
+        articleRepository.save(article);
+
+
+        return article;
     }
 
 }
