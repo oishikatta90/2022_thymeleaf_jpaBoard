@@ -22,6 +22,31 @@ public class ArticleController {
         return articleRepository.findAll();
 
     }
+    @RequestMapping("/doWrite")
+    @ResponseBody
+    public String doWrite(String title, String body) {
+        Article article = new Article();
+
+        if (title == null || title.trim().length() == 0) {
+            return "제목을 넣어주세요";
+        }
+        title = title.trim();
+
+        if (body == null || body.trim().length() == 0) {
+            return "내용을 넣어주세요";
+        }
+        body = body.trim();
+
+        article.setTitle(title);
+        article.setBody(body);
+        article.setReg_date(LocalDateTime.now());
+        article.setUpdate_date(LocalDateTime.now());
+        article.setUserId(1);
+        articleRepository.save(article);
+
+
+        return "게시글이 작성 되었습니다.".formatted(article);
+    }
 
     @RequestMapping("/doModify")
     @ResponseBody
