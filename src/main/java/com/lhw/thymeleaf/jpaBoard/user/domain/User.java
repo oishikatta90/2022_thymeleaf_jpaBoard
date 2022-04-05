@@ -1,5 +1,6 @@
 package com.lhw.thymeleaf.jpaBoard.user.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,5 +21,6 @@ public class User {
     private LocalDateTime update_date;
     private String email;
     private String name;
+    @JsonIgnore
     private String password;
 }
