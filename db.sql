@@ -70,3 +70,5 @@ title = '제목2',
 `body` = '내용2',
 user_id = 0;
 
+#회원 테이블의 email 컬럼을 UNIQUE로 지정
+ALTER TABLE `user` ADD UNIQUE INDEX (`email`);
