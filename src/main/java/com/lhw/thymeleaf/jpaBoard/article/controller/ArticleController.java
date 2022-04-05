@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
-@RequestMapping("/article")
+@RequestMapping("/jpaBoard/article")
 public class ArticleController {
     @Autowired
     private ArticleRepository articleRepository;
