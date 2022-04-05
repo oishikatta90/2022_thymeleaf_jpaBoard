@@ -1,12 +1,10 @@
-package com.lhw.thymeleaf.jpaBoard.domain;
+package com.lhw.thymeleaf.jpaBoard.article.domain;
 
+import com.lhw.thymeleaf.jpaBoard.user.domain.User;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Getter
@@ -20,5 +18,7 @@ public class Article {
     private LocalDateTime update_date;
     private String title;
     private String body;
-    private long userId;
+
+    @ManyToOne
+    private User user;
 }

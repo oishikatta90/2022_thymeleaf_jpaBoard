@@ -1,7 +1,7 @@
-package com.lhw.thymeleaf.jpaBoard.controller;
+package com.lhw.thymeleaf.jpaBoard.article.controller;
 
-import com.lhw.thymeleaf.jpaBoard.dao.ArticleRepository;
-import com.lhw.thymeleaf.jpaBoard.domain.Article;
+import com.lhw.thymeleaf.jpaBoard.article.dao.ArticleRepository;
+import com.lhw.thymeleaf.jpaBoard.article.domain.Article;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +16,7 @@ public class ArticleController {
     @Autowired
     private ArticleRepository articleRepository;
 
-    @RequestMapping("")
+    @RequestMapping("/list")
     @ResponseBody
     public List<Article> returnArticle() {
         return articleRepository.findAll();
@@ -41,7 +41,6 @@ public class ArticleController {
         article.setBody(body);
         article.setReg_date(LocalDateTime.now());
         article.setUpdate_date(LocalDateTime.now());
-        article.setUserId(1);
         articleRepository.save(article);
 
 

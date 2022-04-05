@@ -1,7 +1,7 @@
-package com.lhw.thymeleaf.jpaBoard.controller;
+package com.lhw.thymeleaf.jpaBoard.user.controller;
 
-import com.lhw.thymeleaf.jpaBoard.dao.UserRepository;
-import com.lhw.thymeleaf.jpaBoard.domain.User;
+import com.lhw.thymeleaf.jpaBoard.user.dao.UserRepository;
+import com.lhw.thymeleaf.jpaBoard.user.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

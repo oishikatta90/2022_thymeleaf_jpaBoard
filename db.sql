@@ -63,3 +63,10 @@ title = '제목2',
 `body` = '내용2',
 user_id = 2;
 
+INSERT INTO `article`
+SET reg_date = NOW(),
+update_date = NOW(),
+title = '제목2',
+`body` = '내용2',
+user_id = 0;
+
