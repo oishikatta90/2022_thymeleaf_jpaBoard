@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/jpaBoard/user")
@@ -67,9 +68,10 @@ public class UserController {
             return "이메일을 입력해주세요";
         }
         email = email.trim();
-        User user = userRepository.findByEmail(email).get();
+//        User user = userRepository.findByEmail(email).orElse(null);   # 방법 1번
+        Optional<User> user = userRepository.findByEmail(email);  // 방법 2번
 
-        if (user == null) {
+        if (user.isEmpty()) {
             return "존재하지 않는 이메일입니다.";
         }
 
@@ -77,11 +79,11 @@ public class UserController {
             return "비밀번호를 입력해주세요";
         }
         password = password.trim();
-        if (user.getPassword().equals(password) == false) {
+        if (user.get().getPassword().equals(password) == false) {
             return "비밀번호가 일치하지 않습니다.";
         }
 
-        return "%s님 로그인 되셨습니다.".formatted(user.getName());
+        return "%s님 로그인 되셨습니다.".formatted(user.get().getName());
 
 
     }
