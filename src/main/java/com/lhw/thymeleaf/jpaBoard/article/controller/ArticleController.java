@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/jpaBoard/article")
@@ -23,7 +24,6 @@ public class ArticleController {
 
     @RequestMapping("list")
     public String showList(Model model) {
-
         List<Article> articles = articleRepository.findAll();
 
         model.addAttribute("articles", articles);
@@ -34,6 +34,17 @@ public class ArticleController {
     public String showWrite() {
         return "jpaBoard/article/write";
     }
+
+    @RequestMapping("/detail")
+    public String showDetail(Model model, long id) {
+        Optional<Article> opArticle = articleRepository.findById(id);
+        Article article = opArticle.get();
+
+        model.addAttribute("article", article);
+
+        return "jpaBoard/article/detail";
+    }
+
     @RequestMapping("/doWrite")
     @ResponseBody
     public String doWrite(String title, String body) {
