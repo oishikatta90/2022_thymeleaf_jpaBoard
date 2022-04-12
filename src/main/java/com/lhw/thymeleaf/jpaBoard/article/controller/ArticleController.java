@@ -6,6 +6,7 @@ import com.lhw.thymeleaf.jpaBoard.user.dao.UserRepository;
 import com.lhw.thymeleaf.jpaBoard.user.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -21,7 +22,10 @@ public class ArticleController {
     private UserRepository userRepository;
 
     @RequestMapping("list")
-    public String showList() {
+    public String showList(Model model) {
+
+        model.addAttribute("a", 11);
+        model.addAttribute("b", 123);
         return "jpaBoard/article/list";
     }
     @RequestMapping("list2")
