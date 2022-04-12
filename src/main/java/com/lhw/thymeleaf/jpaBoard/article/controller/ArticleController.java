@@ -20,27 +20,11 @@ public class ArticleController {
     @Autowired
     private UserRepository userRepository;
 
-    @RequestMapping("/list")
-    @ResponseBody
+    @RequestMapping("list")
     public String showList() {
-        List<Article> articles = articleRepository.findAll();
-
-        String html = "";
-
-        html += "<ul>";
-
-        for (Article article :
-                articles) {
-
-            html += "<li>";
-            html += "%d번글 / %s".formatted(article.getId(), article.getTitle());
-            html += "</li>";
-        }
-        html += "</ul>";
-
-        return html;
+        return "jpaBoard/article/list";
     }
-    @RequestMapping("/list2")
+    @RequestMapping("list2")
     @ResponseBody
     public List<Article> showList2() {
         return articleRepository.findAll();

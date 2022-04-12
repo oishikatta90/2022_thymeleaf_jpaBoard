@@ -13,6 +13,10 @@ spring:
         format_sql: true
         use_sql_comments: true
 
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+
 logging:
   level:
     org:
