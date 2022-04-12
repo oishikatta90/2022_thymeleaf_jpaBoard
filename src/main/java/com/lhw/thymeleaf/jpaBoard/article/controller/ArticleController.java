@@ -30,11 +30,9 @@ public class ArticleController {
 
         return "jpaBoard/article/list";
     }
-    @RequestMapping("list2")
-    @ResponseBody
-    public List<Article> showList2() {
-        return articleRepository.findAll();
-
+    @RequestMapping("/write")
+    public String showWrite() {
+        return "jpaBoard/article/write";
     }
     @RequestMapping("/doWrite")
     @ResponseBody
