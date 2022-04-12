@@ -24,8 +24,10 @@ public class ArticleController {
     @RequestMapping("list")
     public String showList(Model model) {
 
-        model.addAttribute("a", 11);
-        model.addAttribute("b", 123);
+        List<Article> articles = articleRepository.findAll();
+
+        model.addAttribute("articles", articles);
+
         return "jpaBoard/article/list";
     }
     @RequestMapping("list2")

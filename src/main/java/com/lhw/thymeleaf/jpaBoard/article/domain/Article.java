@@ -3,6 +3,7 @@ package com.lhw.thymeleaf.jpaBoard.article.domain;
 import com.lhw.thymeleaf.jpaBoard.user.domain.User;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
+@ToString
 public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
