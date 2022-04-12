@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -57,8 +58,21 @@ public class ArticleController {
 
     @RequestMapping("/doWrite")
     @ResponseBody
-    public String doWrite(String title, String body) {
-        Article article = new Article();
+    public String doWrite(String title, String body, HttpSession session) {
+        boolean isLogined = false;
+        long loginedUserId = 0;
+        if (session.getAttribute("loginedUserId") != null) {
+            isLogined = true;
+            loginedUserId = (long)session.getAttribute("loginedUserId");
+
+        } else {
+            return """
+                <script>
+                alert('로그인을 해주세요!');
+                history.back();
+                </script>
+                """;
+        }
 
         if (title == null || title.trim().length() == 0) {
             return "제목을 넣어주세요";
@@ -70,11 +84,12 @@ public class ArticleController {
         }
         body = body.trim();
 
-        article.setTitle(title);
-        article.setBody(body);
+        Article article = new Article();
         article.setReg_date(LocalDateTime.now());
         article.setUpdate_date(LocalDateTime.now());
-        User user = userRepository.findById(1L).get();
+        article.setTitle(title);
+        article.setBody(body);
+        User user = userRepository.findById(loginedUserId).get();
         article.setUser(user);
         articleRepository.save(article);
 
@@ -126,11 +141,6 @@ public class ArticleController {
                     """.formatted(id);
         }
         articleRepository.deleteById(id);
-//        Article article = articleRepository.findById(id).get();
-
-//        articleRepository.delete(article);
-
-
         return """
                 <script>
                 alert('%d번 게시물이 삭제 되었습니다.');

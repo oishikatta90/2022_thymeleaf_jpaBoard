@@ -82,7 +82,7 @@ public class UserController {
             return "비밀번호를 입력해주세요";
         }
         password = password.trim();
-        if (user.get().getPassword().equals(password) == false) {
+        if (!user.get().getPassword().equals(password)) {
             return "비밀번호가 일치하지 않습니다.";
         }
 
@@ -104,7 +104,7 @@ public class UserController {
             isLogined = true;
         }
 
-        if (isLogined == false) {
+        if (!isLogined) {
             return "이미 로그아웃 되었습니다.";
         }
 
