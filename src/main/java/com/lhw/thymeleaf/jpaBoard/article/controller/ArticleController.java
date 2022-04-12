@@ -58,7 +58,12 @@ public class ArticleController {
         articleRepository.save(article);
 
 
-        return "게시글이 작성 되었습니다.".formatted(article);
+        return """
+                <script>
+                alert('%d번 게시물이 생성되었습니다.');
+                location.replace('list');
+                </script>
+                """.formatted(article.getId());
     }
 
     @RequestMapping("/doModify")
