@@ -109,7 +109,7 @@ public class UserController {
         }
 
         session.removeAttribute("loginedUserId");
-        
+
         return "로그아웃 되었습니다.";
 
     }
