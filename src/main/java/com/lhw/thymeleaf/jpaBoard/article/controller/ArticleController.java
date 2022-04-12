@@ -115,8 +115,15 @@ public class ArticleController {
     @RequestMapping("/doDelete")
     @ResponseBody
     public String doDelete(long id) {
-        if (articleRepository.existsById(id) == false) {
-            return id + "번 게시물은 이미 삭제되었거나 존재하지 않는 게시물입니다.";
+        Article article = articleRepository.findById(id).get();
+
+        if (!articleRepository.existsById(id)) {
+            return """
+                    <script>
+                    alert('%d번 게시물은 이미 삭제되었거나 존재하지 않습니다.');
+                    history.back();
+                    </script>
+                    """.formatted(id);
         }
         articleRepository.deleteById(id);
 //        Article article = articleRepository.findById(id).get();
@@ -124,7 +131,12 @@ public class ArticleController {
 //        articleRepository.delete(article);
 
 
-        return "삭제완료";
+        return """
+                <script>
+                alert('%d번 게시물이 삭제 되었습니다.');
+                location.replace('list');
+                </script>
+                """.formatted(article.getId());
     }
 
 }
