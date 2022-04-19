@@ -60,7 +60,19 @@ public class ArticleController {
     }
 
     @RequestMapping("/modify")
-    public String showModify(Model model, long id) {
+    public String showModify(Model model, long id, HttpSession session) {
+        boolean isLogined = false;
+        long loginedUserId = 0;
+        if (session.getAttribute("loginedUserId") != null) {
+            isLogined = true;
+            loginedUserId = (long) session.getAttribute("loginedUserId");
+        }
+
+        if (!isLogined) {
+            model.addAttribute("msg", "로그인 후 이용해주세요!");
+            model.addAttribute("historyBack", true);
+            return "common/js";
+        }
         Optional<Article> opArticle = articleRepository.findById(id);
         Article article = opArticle.get();
 
@@ -117,7 +129,20 @@ public class ArticleController {
 
     @RequestMapping("/doModify")
     @ResponseBody
-    public String doModify(long id, String title, String body) {
+    public String doModify(long id, String title, String body, HttpSession session) {
+        boolean isLogined = false;
+        long loginedUserId = 0;
+        if (session.getAttribute("loginedUserId") != null) {
+            isLogined = true;
+            loginedUserId = (long)session.getAttribute("loginedUserId");
+        } else {
+            return """
+                <script>
+                alert('로그인을 해주세요!');
+                history.back();
+                </script>
+                """;
+        }
         Article article = articleRepository.findById(id).get();
 
         if (title != null) {
