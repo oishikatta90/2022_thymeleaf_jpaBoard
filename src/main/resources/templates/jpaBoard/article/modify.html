@@ -1,51 +1,47 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{jpaBoard/common/layout}">
 <head>
-    <meta charset="UTF-8">
-    <title>게시물 수정 페이지</title>
+    <title>게시물 리스트</title>
 </head>
-<body>
-<div>
-    <a href="write">글쓰기</a> / <a href="list">글 리스트</a>
-</div>
-<div>
-    <a th:href="@{detail(id=${article.id})}">본문으로 돌아가기</a>
-</div>
-<h1>게시물 수정</h1>
-<form action="doModify" method="post">
-    <input type="hidden" name="id" th:value="${article.id}">
+<main layout:fragment="main">
     <div>
-        <div>번호</div>
-        <div>
-            [[${article.id}]]
-        </div>
+        <a th:href="@{detail(id=${article.id})}">본문으로 돌아가기</a>
     </div>
-    <hr>
-    <div>
-        <div>작성 날짜</div>
+    <h1>게시물 수정</h1>
+    <form action="doModify" method="post">
+        <input type="hidden" name="id" th:value="${article.id}">
         <div>
-            [[${article.reg_date}]]
+            <div>번호</div>
+            <div>
+                [[${article.id}]]
+            </div>
         </div>
-    </div>
-    <hr>
-    <div>
-        <div>제목</div>
+        <hr>
         <div>
-            <input type="text" name="title" th:value="${article.title}">
+            <div>작성 날짜</div>
+            <div>
+                [[${article.reg_date}]]
+            </div>
         </div>
-    </div>
-    <div>
-        <div>내용</div>
+        <hr>
         <div>
+            <div>제목</div>
+            <div>
+                <input type="text" name="title" th:value="${article.title}">
+            </div>
+        </div>
+        <div>
+            <div>내용</div>
+            <div>
             <textarea name="body" id="" cols="80" rows="30" th:text="${article.body}">
             </textarea>
+            </div>
         </div>
-    </div>
-    <div>
         <div>
-            <input type="submit" value="수정">
+            <div>
+                <input type="submit" value="수정">
+            </div>
         </div>
-    </div>
-</form>
-</body>
-</html>
+    </form>
+</main>

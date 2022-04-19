@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org"
-      layout:decorate="~{jpaBoard/common/layout}">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{jpaBoard/common/layout}">
 
 <head>
-    <title>게시물 작성</title>
+    <title>게시물 상세</title>
 </head>
 
 <main layout:fragment="main">
+    <h1>게시물 본문</h1>
     <div>
         <a th:if="${article.user.id == session.loginedUserId}" th:href="@{modify(id=${article.id})}">글 수정</a>
         /
         <a onclick="if (confirm('정말로 삭제하시겠습니까?') == false) return false;"
            th:if="${article.user.id == session.loginedUserId}" th:href="@{doDelete(id=${article.id})}">글 삭제</a>
     </div>
-    <h1>게시물 본문</h1>
     <div action="doWrite" method="post">
         <hr>
         <div>
