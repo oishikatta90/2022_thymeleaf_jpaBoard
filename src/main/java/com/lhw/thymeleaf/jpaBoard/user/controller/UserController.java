@@ -4,6 +4,7 @@ import com.lhw.thymeleaf.jpaBoard.user.dao.UserRepository;
 import com.lhw.thymeleaf.jpaBoard.user.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -63,6 +64,24 @@ public class UserController {
         return "%d번 회원이 생성되었습니다.".formatted(user.getId());
     }
 
+    @RequestMapping("login")
+    public String showLogin(HttpSession session, Model model) {
+        boolean isLogined = false;
+        long loginedUserId = 0;
+
+        if (session.getAttribute("loginedUserId") != null) {
+            isLogined = true;
+            loginedUserId = (long) session.getAttribute("loginedUserId");
+        }
+
+        if (isLogined) {
+            model.addAttribute("msg", "이미 로그인 되었습니다.");
+            model.addAttribute("historyBack", true);
+        }
+
+        return "jpaBoard/user/login";
+    }
+
     @RequestMapping("doLogin")
     @ResponseBody
     public String doLogin(String email, String password, HttpServletRequest req, HttpServletResponse resp) {
@@ -91,7 +110,12 @@ public class UserController {
 //        Cookie cookie = new Cookie("loginedUserId", user.get().getId()+"");
 //        resp.addCookie(cookie);
 
-        return "%s님 로그인 되셨습니다.".formatted(user.get().getName());
+        return """
+                <script>
+                alert('%로그인 되셨습니다.');
+                location.replace('article/list');
+                </script>
+                """;
 
 
     }
