@@ -6,12 +6,20 @@
 </head>
 <main layout:fragment="main" class="mt-[20px]">
     <h1 class="container mx-auto mb-3 font-bold text-[1rem] px-[10px]">게시물 목록</h1>
-    <ul class="container mx-auto px-[10px]">
-        <li th:each="article: ${articles}">
+    <div class="container mx-auto px-[10px] grid md:grid-cols-2 xl:grid-cols-3 gap-[10px]">
+        <div th:each="article: ${articles}">
             <a th:href="@{detail(id=${article.id})}">
-                아이디 : [[${article.id}]] / 제목 : [[${article.title}]]
+            <div class="card bg-base-100 shadow-xl">
+                <div class="card-body">
+                    <h2 class="card-title">
+                        <span class="badge">[[${article.id}]]</span>
+                        [[${article.title}]]
+                    </h2>
+                    <p>[[${article.body}]]</p>
+                </div>
+            </div>
             </a>
-        </li>
-    </ul>
+        </div>
+    </div>
 </main>
 </html>
