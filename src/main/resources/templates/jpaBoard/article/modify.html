@@ -5,38 +5,22 @@
     <title>게시물 리스트</title>
 </head>
 <main layout:fragment="main">
-    <div class="container mx-auto px-[10px]">
-        <a th:href="@{detail(id=${article.id})}">본문으로 돌아가기</a>
-    </div>
-    <h1 class="container mx-auto mb-3 font-bold text-[1rem] px-[10px]">게시물 수정</h1>
+
+    <h1 class="container mx-auto mb-3 font-bold text-[1rem] px-[10px]">[[${article.id}]]번 게시물 수정</h1>
     <form class="container mx-auto px-[10px]" action="doModify" method="post">
         <input type="hidden" name="id" th:value="${article.id}">
-        <div>
-            <div>번호</div>
-            <div>
-                [[${article.id}]]
-            </div>
-        </div>
-        <hr>
-        <div>
-            <div>작성 날짜</div>
-            <div>
-                [[${article.reg_date}]]
-            </div>
-        </div>
-        <hr>
-        <div class="form-control w-full max-w-xs">
+        <div class="form-control">
             <span class="label-text">제목</span>
-            <input type="text" name="title" class="input input-bordered" th:value="${article.title}">
+            <input type="text" name="title" class="input input-bordered w-full max-w-xl" th:value="${article.title}">
         </div>
-        <div class="form-control w-full max-w-xs">
+        <div class="form-control">
             <span class="label-text">내용</span>
-            <textarea name="body" class="textarea textarea-bordered" th:text="${article.body}"></textarea>
+            <textarea name="body" class="textarea textarea-bordered w-full max-w-xl" th:text="${article.body}"></textarea>
         </div>
         <div>
-            <div>
-                <input type="submit" value="수정" class="btn btn-success mt-[20px]   ">
-            </div>
+            <input type="submit" value="수정" class="btn btn-sm btn-success mt-[20px]">
+            <input type="reset" class="btn btn-sm btn-success" value="초기화">
+            <input type="button" value="취소" class="btn btn-sm btn-success" onclick="history.back();">
         </div>
     </form>
 </main>
