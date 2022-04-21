@@ -5,8 +5,8 @@
     <title>게시물 리스트</title>
 </head>
 <main layout:fragment="main" class="mt-[20px]">
-    <h1 class="container mx-auto mb-3 font-bold text-[1rem]">게시물 목록</h1>
-    <ul class="container mx-auto">
+    <h1 class="container mx-auto mb-3 font-bold text-[1rem] px-[10px]">게시물 목록</h1>
+    <ul class="container mx-auto px-[10px]">
         <li th:each="article: ${articles}">
             <a th:href="@{detail(id=${article.id})}">
                 아이디 : [[${article.id}]] / 제목 : [[${article.title}]]

@@ -7,14 +7,14 @@
 </head>
 
 <main layout:fragment="main">
-    <h1>게시물 본문</h1>
-    <div>
+    <h1 class="container mx-auto mb-3 font-bold text-[1rem] px-[10px]"  >게시물 본문</h1>
+    <div class="container mx-auto px-[10px]">
         <a th:if="${article.user.id == session.loginedUserId}" th:href="@{modify(id=${article.id})}">글 수정</a>
         /
         <a onclick="if (confirm('정말로 삭제하시겠습니까?') == false) return false;"
            th:if="${article.user.id == session.loginedUserId}" th:href="@{doDelete(id=${article.id})}">글 삭제</a>
     </div>
-    <div action="doWrite" method="post">
+    <div class="container mx-auto px-[10px]" action="doWrite" method="post">
         <hr>
         <div>
             <div>번호</div>

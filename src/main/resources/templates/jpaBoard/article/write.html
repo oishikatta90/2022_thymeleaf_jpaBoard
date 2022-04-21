@@ -5,23 +5,20 @@
     <title>게시물 작성</title>
 </head>
 <main layout:fragment="main">
-    <h1>게시물 작성</h1>
-    <form action="doWrite" method="post">
-        <div>
-            <div>제목</div>
-            <div>
-                <input type="text" name="title" placeholder="제목을 입력해주세요.">
-            </div>
+    <h1 class="container mx-auto mb-3 font-bold text-[1rem] px-[10px]">게시물 작성</h1>
+    <form class="container mx-auto" action="doWrite" method="post">
+        <div class="form-control w-full max-w-xs px-[10px]">
+            <span class="label-text">제목</span>
+            <input type="text" name="title" class="input input-bordered" placeholder="제목을 입력해주세요.">
+        </div>
+
+        <div class="form-control w-full max-w-xs px-[10px]">
+            <span class="label-text">내용</span>
+            <textarea name="body" class="textarea textarea-bordered" placeholder="내용을 입력해주세요."></textarea>
         </div>
         <div>
-            <div>내용</div>
-            <div>
-                <textarea name="body" id="" cols="80" rows="30" placeholder="내용을 입력해주세요."></textarea>
-            </div>
-        </div>
-        <div>
-            <div>
-                <input type="submit" value="작성">
+            <div class=" px-[10px]">
+                <input type="submit" value="작성" class="btn btn-success mt-[20px]   ">
             </div>
         </div>
     </form>
