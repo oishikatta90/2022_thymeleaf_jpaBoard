@@ -87,22 +87,43 @@ public class UserController {
     public String doLogin(String email, String password, HttpServletRequest req, HttpServletResponse resp) {
 
         if (email == null || email.trim().length() == 0) {
-            return "이메일을 입력해주세요";
+            return """
+                <script>
+                alert('이메일을 입력해주세요!');
+                history.back();
+                </script>
+                """;
         }
         email = email.trim();
 //        User user = userRepository.findByEmail(email).orElse(null);   # 방법 1번
         Optional<User> user = userRepository.findByEmail(email);  // 방법 2번
 
         if (user.isEmpty()) {
-            return "존재하지 않는 이메일입니다.";
+            return """
+                <script>
+                alert('일치하는 회원이 존재하지 않습니다!');
+                history.back();
+                </script>
+                """;
         }
+        
 
         if (password == null || password.trim().length() == 0) {
-            return "비밀번호를 입력해주세요";
+            return """
+                <script>
+                alert('비밀번호를 입력해주세요!');
+                history.back();
+                </script>
+                """;
         }
         password = password.trim();
         if (!user.get().getPassword().equals(password)) {
-            return "비밀번호가 일치하지 않습니다.";
+            return """
+                <script>
+                alert('비밀번호가 일치하지 않습니다!');
+                history.back();
+                </script>
+                """;
         }
 
         HttpSession session = req.getSession();
@@ -112,10 +133,10 @@ public class UserController {
 
         return """
                 <script>
-                alert('%로그인 되셨습니다.');
-                location.replace('article/list');
+                alert('%s님 로그인 되셨습니다.');
+                history.back();
                 </script>
-                """;
+                """.formatted(user.get().getName());
 
 
     }
