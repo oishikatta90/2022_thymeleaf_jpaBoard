@@ -4,17 +4,17 @@
 <head>
     <title>게시물 작성</title>
 </head>
-<main layout:fragment="main">
+<main layout:fragment="main" class="mt-[20px]">
     <h1 class="container mx-auto mb-3 font-bold text-[1rem] px-[10px]">게시물 작성</h1>
-    <form class="container mx-auto" action="doWrite" method="post">
-        <div class="form-control w-full max-w-xs px-[10px]">
+    <form class="container mx-auto px-[10px]" action="doWrite" method="post">
+        <div class="form-control">
             <span class="label-text">제목</span>
-            <input type="text" name="title" class="input input-bordered" placeholder="제목을 입력해주세요.">
+            <input required type="text" name="title" class="input input-bordered w-full max-w-xl" placeholder="제목을 입력해주세요.">
         </div>
 
-        <div class="form-control w-full max-w-xs px-[10px]">
+        <div class="form-control">
             <span class="label-text">내용</span>
-            <textarea name="body" class="textarea textarea-bordered" placeholder="내용을 입력해주세요."></textarea>
+            <textarea required rows="10" name="body" class="textarea textarea-bordered w-full max-w-xl" placeholder="내용을 입력해주세요."></textarea>
         </div>
         <div>
             <div class=" px-[10px]">
