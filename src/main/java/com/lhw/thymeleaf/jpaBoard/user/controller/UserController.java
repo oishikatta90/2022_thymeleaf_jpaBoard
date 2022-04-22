@@ -85,7 +85,6 @@ public class UserController {
     @RequestMapping("doLogin")
     @ResponseBody
     public String doLogin(String email, String password, HttpServletRequest req, HttpServletResponse resp) {
-
         if (email == null || email.trim().length() == 0) {
             return """
                 <script>
@@ -134,7 +133,7 @@ public class UserController {
         return """
                 <script>
                 alert('%s님 로그인 되셨습니다.');
-                history.back();
+                location.replace('/jpaBoard/article/list');
                 </script>
                 """.formatted(user.get().getName());
 
@@ -150,12 +149,22 @@ public class UserController {
         }
 
         if (!isLogined) {
-            return "이미 로그아웃 되었습니다.";
+            return """
+                <script>
+                alert('이미 로그아웃 되었습니다!');
+                history.back();
+                </script>
+                """;
         }
 
         session.removeAttribute("loginedUserId");
 
-        return "로그아웃 되었습니다.";
+        return  """
+                <script>
+                alert('로그아웃 되셨습니다.');
+                location.replace('/');
+                </script>
+                """;
 
     }
     @RequestMapping("/me")
